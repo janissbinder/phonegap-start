@@ -38,7 +38,7 @@ var app = {
         $(document).ready(function() {
 			// load task data from server
 			$( "#importent" ).checkboxradio({ mini: true });
-			$.get('/Tasklist/task', function(data) {
+			$.get('http://192.168.1.103:8080/Tasklist/task', function(data) {
 				console.log(data);
 				$('#tasklist').html(data).listview('refresh');
 			});
