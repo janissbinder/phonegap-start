@@ -35,14 +35,14 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
         
-        $(document).ready(function() {
-			// load task data from server
-			$( "#importent" ).checkboxradio({ mini: true });
-			$.get('http://192.168.1.103:8080/Tasklist/task', function(data) {
-				console.log(data);
-				$('#tasklist').html(data).listview('refresh');
-			});
-		});
+//        $(document).ready(function() {
+//			// load task data from server
+//			$( "#importent" ).checkboxradio({ mini: true });
+//			$.get('http://192.168.1.103:8080/Tasklist/task', function(data) {
+//				console.log(data);
+//				$('#tasklist').html(data).listview('refresh');
+//			});
+//		});
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -56,25 +56,24 @@ var app = {
         console.log('Received Event: ' + id);
     }
     
-	function showEdit(taskId) {
-		console.log('showEdit(' + taskId + ')');
-
-		// load task data from server (fake)
-		if (taskId == 3) {
-			$('#title').val('Butter');
-			$('#importent').prop( "checked", true ).checkboxradio( "refresh" );
-		} else if (taskId == 2) {
-			$('#title').val('Brot');
-			$('#importent').prop( "checked", false ).checkboxradio( "refresh" );
-		} else if (taskId == 1) {
-			$('#title').val('Eier');
-			$('#importent').prop( "checked", false ).checkboxradio( "refresh" );
-		} else {
-			$('#title').val('');
-			$('#importent').prop( "checked", false ).checkboxradio( "refresh" );
-		}
-		// change to the edit page
-		$.mobile.changePage('#edit');
-
-	}
+//	function showEdit(taskId) {
+//		console.log('showEdit(' + taskId + ')');
+//
+//		// load task data from server (fake)
+//		if (taskId == 3) {
+//			$('#title').val('Butter');
+//			$('#importent').prop( "checked", true ).checkboxradio( "refresh" );
+//		} else if (taskId == 2) {
+//			$('#title').val('Brot');
+//			$('#importent').prop( "checked", false ).checkboxradio( "refresh" );
+//		} else if (taskId == 1) {
+//			$('#title').val('Eier');
+//			$('#importent').prop( "checked", false ).checkboxradio( "refresh" );
+//		} else {
+//			$('#title').val('');
+//			$('#importent').prop( "checked", false ).checkboxradio( "refresh" );
+//		}
+//		// change to the edit page
+//		$.mobile.changePage('#edit');
+//	}
 };
