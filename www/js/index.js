@@ -16,34 +16,65 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-//var app = {
-//    // Application Constructor
-//    initialize: function() {
-//        this.bindEvents();
-//    },
-//    // Bind Event Listeners
-//    //
-//    // Bind any events that are required on startup. Common events are:
-//    // 'load', 'deviceready', 'offline', and 'online'.
-//    bindEvents: function() {
-//        document.addEventListener('deviceready', this.onDeviceReady, false);
-//    },
-//    // deviceready Event Handler
-//    //
-//    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-//    // function, we must explicity call 'app.receivedEvent(...);'
-//    onDeviceReady: function() {
-//        app.receivedEvent('deviceready');
-//    },
-//    // Update DOM on a Received Event
-//    receivedEvent: function(id) {
-//        var parentElement = document.getElementById(id);
-//        var listeningElement = parentElement.querySelector('.listening');
-//        var receivedElement = parentElement.querySelector('.received');
-//
-//        listeningElement.setAttribute('style', 'display:none;');
-//        receivedElement.setAttribute('style', 'display:block;');
-//
-//        console.log('Received Event: ' + id);
-//    }
-//};
+var app = {
+    // Application Constructor
+    initialize: function() {
+        this.bindEvents();
+    },
+    // Bind Event Listeners
+    //
+    // Bind any events that are required on startup. Common events are:
+    // 'load', 'deviceready', 'offline', and 'online'.
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+    },
+    // deviceready Event Handler
+    //
+    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+    // function, we must explicity call 'app.receivedEvent(...);'
+    onDeviceReady: function() {
+        app.receivedEvent('deviceready');
+        
+        $(document).ready(function() {
+			// load task data from server
+			$( "#importent" ).checkboxradio({ mini: true });
+			$.get('/Tasklist/task', function(data) {
+				console.log(data);
+				$('#tasklist').html(data).listview('refresh');
+			});
+		});
+    },
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
+        var parentElement = document.getElementById(id);
+        var listeningElement = parentElement.querySelector('.listening');
+        var receivedElement = parentElement.querySelector('.received');
+
+        listeningElement.setAttribute('style', 'display:none;');
+        receivedElement.setAttribute('style', 'display:block;');
+
+        console.log('Received Event: ' + id);
+    }
+    
+	function showEdit(taskId) {
+		console.log('showEdit(' + taskId + ')');
+
+		// load task data from server (fake)
+		if (taskId == 3) {
+			$('#title').val('Butter');
+			$('#importent').prop( "checked", true ).checkboxradio( "refresh" );
+		} else if (taskId == 2) {
+			$('#title').val('Brot');
+			$('#importent').prop( "checked", false ).checkboxradio( "refresh" );
+		} else if (taskId == 1) {
+			$('#title').val('Eier');
+			$('#importent').prop( "checked", false ).checkboxradio( "refresh" );
+		} else {
+			$('#title').val('');
+			$('#importent').prop( "checked", false ).checkboxradio( "refresh" );
+		}
+		// change to the edit page
+		$.mobile.changePage('#edit');
+
+	}
+};

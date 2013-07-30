@@ -8,75 +8,46 @@
         <title>Tasklist</title>
     </head>
     <body>
-        <!-- Start of first page -->
-	<div data-role="page" id="list">
-		<ul id="tasklist" data-role="listview" data-inset="true"
-			data-divider-theme="d">
-		</ul>
-		<a href="#" data-role="button" data-icon="plus" onclick="showEdit()"
-			data-iconpos="notext" data-theme="b" data-iconshadow="false"
-			data-inline="true">Plus</a>
-	</div>
-	<!-- /page -->
-
-	<!-- Start of second page -->
-	<div data-role="page" id="edit">
-
-		<ul data-role="listview">
-
-			<li><form>
-					<input name="title" id="title" value="" type="text"> <label>
-						<input name="importent" id="importent" type="checkbox">wichtig
-					</label>
-					<!--  fieldset data-role="controlgroup" data-type="horizontal"
-						data-mini="true">
-						<input data-theme="a" name="importent" id="importent_false"
-							value="on" checked="checked" type="radio"> <label
-							for="importent_false">unwichtig</label> <input data-theme="a"
-							name="importent" id="importent_true" value="off" type="radio">
-						<label for="importent_true">wichtig</label>
-					</fieldset -->
-				</form></li>
-		</ul>
-		<p>
-			<a href="#" data-role="button" data-inline="true">Speichern</a> <a
-				href="#list" data-role="button" data-inline="true">Abbrechen</a>
-		</p>
-	</div>
-	<!-- /page -->
-
-	<script type="text/javascript">
-		function showEdit(taskId) {
-			console.log('showEdit(' + taskId + ')');
-
-			// load task data from server (fake)
-			if (taskId == 3) {
-				$('#title').val('Butter');
-				$('#importent').prop( "checked", true ).checkboxradio( "refresh" );
-			} else if (taskId == 2) {
-				$('#title').val('Brot');
-				$('#importent').prop( "checked", false ).checkboxradio( "refresh" );
-			} else if (taskId == 1) {
-				$('#title').val('Eier');
-				$('#importent').prop( "checked", false ).checkboxradio( "refresh" );
-			} else {
-				$('#title').val('');
-				$('#importent').prop( "checked", false ).checkboxradio( "refresh" );
-			}
-			// change to the edit page
-			$.mobile.changePage('#edit');
-
-		}
-
-		$(document).ready(function() {
-			// load task data from server
-			$( "#importent" ).checkboxradio({ mini: true });
-			$.get('/Tasklist/task', function(data) {
-				console.log(data);
-				$('#tasklist').html(data).listview('refresh');
-			});
-		});
-	</script>
+    	<div class="app">
+  
+	        <!-- Start of first page -->
+			<div data-role="page" id="list">
+				<ul id="tasklist" data-role="listview" data-inset="true"
+					data-divider-theme="d">
+				</ul>
+				<a href="#" data-role="button" data-icon="plus" onclick="showEdit()"
+					data-iconpos="notext" data-theme="b" data-iconshadow="false"
+					data-inline="true">Plus</a>
+			</div>
+			<!-- /page -->
+		
+			<!-- Start of second page -->
+			<div data-role="page" id="edit">
+		
+				<ul data-role="listview">
+		
+					<li><form>
+							<input name="title" id="title" value="" type="text"> <label>
+								<input name="importent" id="importent" type="checkbox">wichtig
+							</label>
+							<!--  fieldset data-role="controlgroup" data-type="horizontal"
+								data-mini="true">
+								<input data-theme="a" name="importent" id="importent_false"
+									value="on" checked="checked" type="radio"> <label
+									for="importent_false">unwichtig</label> <input data-theme="a"
+									name="importent" id="importent_true" value="off" type="radio">
+								<label for="importent_true">wichtig</label>
+							</fieldset -->
+						</form></li>
+				</ul>
+				<p>
+					<a href="#" data-role="button" data-inline="true">Speichern</a> <a
+						href="#list" data-role="button" data-inline="true">Abbrechen</a>
+				</p>
+			</div>
+			<!-- /page -->
+	
+		</div>
 	
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
@@ -84,7 +55,8 @@
         <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
         
         <script type="text/javascript">
-            //app.initialize();
+            app.initialize();
         </script>
+        
     </body>
 </html>
